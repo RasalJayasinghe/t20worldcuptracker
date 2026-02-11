@@ -26,6 +26,15 @@ export default function Loading() {
           </div>
         </div>
 
+        {/* Predictions heading */}
+        <div>
+          <div className="mb-5 h-6 w-52 animate-pulse rounded bg-white/[0.06]" />
+          <div
+            className="h-96 animate-pulse rounded-2xl border border-white/[0.06] bg-white/[0.02]"
+            style={{ animationDelay: "200ms" }}
+          />
+        </div>
+
         {/* Match heading */}
         <div>
           <div className="mb-5 h-6 w-32 animate-pulse rounded bg-white/[0.06]" />
@@ -42,15 +51,6 @@ export default function Loading() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Predictions heading */}
-        <div>
-          <div className="mb-5 h-6 w-52 animate-pulse rounded bg-white/[0.06]" />
-          <div
-            className="h-96 animate-pulse rounded-2xl border border-white/[0.06] bg-white/[0.02]"
-            style={{ animationDelay: "200ms" }}
-          />
         </div>
       </div>
     </div>

@@ -105,8 +105,8 @@ export default function Dashboard({
 
       <main className="relative z-10 mx-auto w-full max-w-7xl flex-1 space-y-12 px-4 py-10 sm:px-6 lg:px-8">
         <PointsTable groups={groups} />
-        <MatchFeed recent={recent} upcoming={upcoming} />
         <PredictionsPanel predictions={predictions} />
+        <MatchFeed recent={recent} upcoming={upcoming} />
       </main>
 
       <Footer lastUpdated={lastUpdated} />

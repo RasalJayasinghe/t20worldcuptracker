@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/db";
-import { computePredictions } from "@/lib/compute-predictions";
 import type { PredictionRow } from "@/lib/types";
+import { getStaticPredictions } from "@/lib/static-fallback";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  // 1. Try live database first
   try {
-    // Try cached predictions first
+    const prisma = (await import("@/lib/db")).default;
+
     const cached = await prisma.prediction.findMany({
       include: { team: true },
     });
@@ -34,17 +35,22 @@ export async function GET() {
       });
     }
 
-    // No cache – compute on the fly
+    // No cache – try computing on the fly
+    const { computePredictions } = await import("@/lib/compute-predictions");
     const predictions = await computePredictions();
     return NextResponse.json({
       predictions,
       updatedAt: new Date().toISOString(),
     });
-  } catch (error) {
-    console.error("GET /api/predictions error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch predictions" },
-      { status: 500 },
-    );
+  } catch {
+    // DB not available – fall through to static data
   }
+
+  // 2. Fall back to pre-generated static data
+  const staticData = getStaticPredictions();
+  if (staticData) {
+    return NextResponse.json(staticData);
+  }
+
+  return NextResponse.json({ predictions: [], updatedAt: null });
 }

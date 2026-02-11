@@ -16,7 +16,7 @@ function StatusBadge({ status }: { status: MatchInfo["status"] }) {
 
   return (
     <span
-      className={`inline-block rounded-full border px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${styles[status]}`}
+      className={`inline-block rounded-full border px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider sm:px-2.5 sm:text-[9px] ${styles[status]}`}
     >
       {status === "live" ? "LIVE" : status === "completed" ? "FT" : "Upcoming"}
     </span>
@@ -25,10 +25,10 @@ function StatusBadge({ status }: { status: MatchInfo["status"] }) {
 
 function MatchCard({ match }: { match: MatchInfo }) {
   return (
-    <div className="glass-card-inner p-4 transition-all hover:border-white/[0.10] hover:bg-white/[0.03]">
+    <div className="glass-card-inner p-3 transition-all hover:border-white/[0.10] hover:bg-white/[0.03] sm:p-4">
       {/* Header: stage + status */}
-      <div className="mb-3 flex items-center justify-between">
-        <span className="label-text">
+      <div className="mb-2 flex items-center justify-between sm:mb-3">
+        <span className="label-text text-[10px] sm:text-[11px]">
           {match.stage}
           {match.group ? ` · Group ${match.group}` : ""}
         </span>
@@ -36,13 +36,13 @@ function MatchCard({ match }: { match: MatchInfo }) {
       </div>
 
       {/* Teams */}
-      <div className="space-y-2">
+      <div className="space-y-1.5 sm:space-y-2">
         {/* Home */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <span className="text-lg">{match.homeTeam.flag}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-base sm:text-lg">{match.homeTeam.flag}</span>
             <span
-              className={`text-sm font-semibold ${
+              className={`text-xs font-semibold sm:text-sm ${
                 match.winnerId === match.homeTeam.id
                   ? "text-white"
                   : "text-slate-300/80"
@@ -55,7 +55,7 @@ function MatchCard({ match }: { match: MatchInfo }) {
             )}
           </div>
           {match.homeScore && (
-            <span className="font-mono text-xs text-slate-300">
+            <span className="font-mono text-[11px] text-slate-300 sm:text-xs">
               {match.homeScore}
             </span>
           )}
@@ -63,10 +63,10 @@ function MatchCard({ match }: { match: MatchInfo }) {
 
         {/* Away */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <span className="text-lg">{match.awayTeam.flag}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-base sm:text-lg">{match.awayTeam.flag}</span>
             <span
-              className={`text-sm font-semibold ${
+              className={`text-xs font-semibold sm:text-sm ${
                 match.winnerId === match.awayTeam.id
                   ? "text-white"
                   : "text-slate-300/80"
@@ -79,7 +79,7 @@ function MatchCard({ match }: { match: MatchInfo }) {
             )}
           </div>
           {match.awayScore && (
-            <span className="font-mono text-xs text-slate-300">
+            <span className="font-mono text-[11px] text-slate-300 sm:text-xs">
               {match.awayScore}
             </span>
           )}
@@ -87,11 +87,11 @@ function MatchCard({ match }: { match: MatchInfo }) {
       </div>
 
       {/* Result / date */}
-      <div className="mt-3 border-t border-white/[0.04] pt-2.5">
+      <div className="mt-2 border-t border-white/[0.04] pt-2 sm:mt-3 sm:pt-2.5">
         {match.result ? (
-          <p className="text-xs text-slate-400/80">{match.result}</p>
+          <p className="text-[11px] text-slate-400/80 sm:text-xs">{match.result}</p>
         ) : match.date ? (
-          <p className="text-xs text-slate-500">
+          <p className="text-[11px] text-slate-500 sm:text-xs">
             {new Date(match.date).toLocaleDateString(undefined, {
               weekday: "short",
               month: "short",
@@ -110,7 +110,7 @@ export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
 
   if (noData) {
     return (
-      <section className="glass-card p-8 text-center text-slate-400">
+      <section className="glass-card p-6 text-center text-sm text-slate-400 sm:p-8">
         No match data yet. Seed the database or refresh from live source.
       </section>
     );
@@ -118,14 +118,14 @@ export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
 
   return (
     <section>
-      <h2 className="section-heading mb-5">Match Centre</h2>
+      <h2 className="section-heading mb-4 sm:mb-5">Match Centre</h2>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Recent results */}
         {recent.length > 0 && (
           <div>
-            <h3 className="label-text mb-3">Recent Results</h3>
-            <div className="space-y-3">
+            <h3 className="label-text mb-2 sm:mb-3">Recent Results</h3>
+            <div className="space-y-2 sm:space-y-3">
               {recent.map((m) => (
                 <MatchCard key={m.id} match={m} />
               ))}
@@ -136,8 +136,8 @@ export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
         {/* Upcoming */}
         {upcoming.length > 0 && (
           <div>
-            <h3 className="label-text mb-3">Upcoming Fixtures</h3>
-            <div className="space-y-3">
+            <h3 className="label-text mb-2 sm:mb-3">Upcoming Fixtures</h3>
+            <div className="space-y-2 sm:space-y-3">
               {upcoming.map((m) => (
                 <MatchCard key={m.id} match={m} />
               ))}

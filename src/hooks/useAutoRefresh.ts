@@ -3,8 +3,8 @@
 import { useEffect, useRef, useCallback } from "react";
 
 /**
- * Calls `fetchFn` on mount and then every `intervalMs` milliseconds.
- * Returns a manual trigger so the user can also refresh on demand.
+ * Calls `fetchFn` every `intervalMs` milliseconds.
+ * Skips the initial call since data is now server-rendered.
  */
 export function useAutoRefresh(
   fetchFn: () => Promise<void>,
@@ -17,9 +17,8 @@ export function useAutoRefresh(
   }, [fetchFn]);
 
   useEffect(() => {
-    // Initial fetch
-    savedFn.current();
-
+    // No initial fetch – data is already server-rendered.
+    // Only set up the periodic refresh.
     const id = setInterval(() => savedFn.current(), intervalMs);
     return () => clearInterval(id);
   }, [intervalMs]);

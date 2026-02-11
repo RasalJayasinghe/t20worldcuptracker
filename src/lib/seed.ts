@@ -59,18 +59,18 @@ interface SeedStanding {
 }
 
 const STANDINGS: SeedStanding[] = [
-  // Group A
+  // Group A – confirmed ESPN Feb 11
   { short: "PAK", played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  0.932 },
   { short: "IND", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.450 },
   { short: "NED", played: 2, won: 1, lost: 1, tied: 0, nr: 0, pts: 2, nrr:  0.356 },
   { short: "NAM", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.033 },
   { short: "USA", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -1.525 },
 
-  // Group B
-  { short: "AUS", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  3.350 },
+  // Group B – AUS haven't played yet; IRE only 1 match
   { short: "ZIM", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.702 },
   { short: "SL",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.000 },
-  { short: "IRE", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -2.175 },
+  { short: "AUS", played: 0, won: 0, lost: 0, tied: 0, nr: 0, pts: 0, nrr:  0.000 },
+  { short: "IRE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.000 },
   { short: "OMA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.702 },
 
   // Group C
@@ -80,10 +80,10 @@ const STANDINGS: SeedStanding[] = [
   { short: "NEP", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -0.200 },
   { short: "ITA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -3.650 },
 
-  // Group D
+  // Group D – AFG vs SA is LIVE; pre-match standings
   { short: "NZ",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.919 },
-  { short: "SA",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.425 },
-  { short: "AFG", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -0.555 },
+  { short: "SA",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.850 },
+  { short: "AFG", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.162 },
   { short: "UAE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.763 },
   { short: "CAN", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.850 },
 ];

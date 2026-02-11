@@ -67,18 +67,18 @@ interface SeedStanding {
 }
 
 const STANDINGS: SeedStanding[] = [
-  // Group A
+  // Group A – confirmed ESPN Feb 11
   { short: "PAK", played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  0.932 },
   { short: "IND", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.450 },
   { short: "NED", played: 2, won: 1, lost: 1, tied: 0, nr: 0, pts: 2, nrr:  0.356 },
   { short: "NAM", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.033 },
   { short: "USA", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -1.525 },
 
-  // Group B
-  { short: "AUS", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  3.350 },
+  // Group B – AUS haven't played yet; IRE only 1 match
   { short: "ZIM", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.702 },
   { short: "SL",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.000 },
-  { short: "IRE", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -2.175 },
+  { short: "AUS", played: 0, won: 0, lost: 0, tied: 0, nr: 0, pts: 0, nrr:  0.000 },
+  { short: "IRE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.000 },
   { short: "OMA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.702 },
 
   // Group C
@@ -88,10 +88,10 @@ const STANDINGS: SeedStanding[] = [
   { short: "NEP", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -0.200 },
   { short: "ITA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -3.650 },
 
-  // Group D
+  // Group D – AFG vs SA is LIVE; only pre-match standings shown
   { short: "NZ",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.919 },
-  { short: "SA",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.425 },
-  { short: "AFG", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -0.555 },
+  { short: "SA",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.850 },
+  { short: "AFG", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.162 },
   { short: "UAE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.763 },
   { short: "CAN", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.850 },
 ];
@@ -112,49 +112,59 @@ interface SeedMatch {
 }
 
 const MATCHES: SeedMatch[] = [
-  // Completed
-  { home: "NED", away: "PAK", homeScore: "148/9 (20)", awayScore: "149/7 (19.3)", result: "Pakistan won by 3 wickets", winner: "PAK", status: "completed", group: "A", venue: "Ahmedabad", dayOffset: 0 },
-  { home: "SCO", away: "WI",  homeScore: "147/10 (20)", awayScore: "182/5 (20)", result: "West Indies won by 35 runs", winner: "WI", status: "completed", group: "C", venue: "Colombo", dayOffset: 0 },
-  { home: "IND", away: "USA", homeScore: "161/5 (20)", awayScore: "132/8 (20)", result: "India won by 29 runs", winner: "IND", status: "completed", group: "A", venue: "Ahmedabad", dayOffset: 0 },
-  { home: "AFG", away: "NZ",  homeScore: "182/7 (20)", awayScore: "183/5 (17.5)", result: "New Zealand won by 5 wickets", winner: "NZ", status: "completed", group: "D", venue: "Delhi", dayOffset: 1 },
-  { home: "ENG", away: "NEP", homeScore: "184/6 (20)", awayScore: "180/7 (20)", result: "England won by 4 runs", winner: "ENG", status: "completed", group: "C", venue: "Colombo", dayOffset: 1 },
-  { home: "SL",  away: "IRE", homeScore: "163/5 (20)", awayScore: "143/8 (20)", result: "Sri Lanka won by 20 runs", winner: "SL", status: "completed", group: "B", venue: "Galle", dayOffset: 1 },
-  { home: "ITA", away: "SCO", homeScore: "134/10 (20)", awayScore: "207/3 (20)", result: "Scotland won by 73 runs", winner: "SCO", status: "completed", group: "C", venue: "Colombo", dayOffset: 2 },
-  { home: "OMA", away: "ZIM", homeScore: "103/10 (20)", awayScore: "106/2 (13.3)", result: "Zimbabwe won by 8 wickets", winner: "ZIM", status: "completed", group: "B", venue: "Galle", dayOffset: 2 },
-  { home: "CAN", away: "SA",  homeScore: "156/8 (20)", awayScore: "213/4 (20)", result: "South Africa won by 57 runs", winner: "SA", status: "completed", group: "D", venue: "Delhi", dayOffset: 2 },
-  { home: "NAM", away: "NED", homeScore: "156/7 (20)", awayScore: "159/3 (18)", result: "Netherlands won by 7 wickets", winner: "NED", status: "completed", group: "A", venue: "Ahmedabad", dayOffset: 3 },
-  { home: "NZ",  away: "UAE", homeScore: "175/0 (15.2)", awayScore: "173/6 (20)", result: "New Zealand won by 10 wickets", winner: "NZ", status: "completed", group: "D", venue: "Delhi", dayOffset: 3 },
-  { home: "PAK", away: "USA", homeScore: "190/9 (20)", awayScore: "158/8 (20)", result: "Pakistan won by 32 runs", winner: "PAK", status: "completed", group: "A", venue: "Ahmedabad", dayOffset: 3 },
-  { home: "AFG", away: "SA",  homeScore: "169/8 (20)", awayScore: "170/4 (18.3)", result: "South Africa won by 6 wickets", winner: "SA", status: "completed", group: "D", venue: "Delhi", dayOffset: 4 },
-  { home: "AUS", away: "IRE", homeScore: "182/4 (20)", awayScore: "115/10 (17)", result: "Australia won by 67 runs", winner: "AUS", status: "completed", group: "B", venue: "Galle", dayOffset: 4 },
+  // ── Completed (confirmed from ESPN, Feb 11) ─────────────
 
-  // Upcoming
-  { home: "ENG", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 4 },
-  { home: "SL",  away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 5 },
-  { home: "ITA", away: "NEP", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 5 },
-  { home: "IND", away: "NAM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 6 },
-  { home: "AUS", away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 6 },
-  { home: "CAN", away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 7 },
-  { home: "NED", away: "USA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 8 },
-  { home: "IRE", away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 8 },
-  { home: "ENG", away: "SCO", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 9 },
-  { home: "NZ",  away: "SA",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 9 },
-  { home: "NEP", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 10 },
-  { home: "NAM", away: "USA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 10 },
-  { home: "IND", away: "PAK", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 11 },
-  { home: "AFG", away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 12 },
-  { home: "ENG", away: "ITA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 12 },
-  { home: "AUS", away: "SL",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 13 },
-  { home: "CAN", away: "NZ",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 13 },
-  { home: "IRE", away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 14 },
-  { home: "NEP", away: "SCO", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 14 },
-  { home: "SA",  away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 15 },
-  { home: "NAM", away: "PAK", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 15 },
-  { home: "IND", away: "NED", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 16 },
-  { home: "ITA", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 16 },
-  { home: "SL",  away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 17 },
-  { home: "AFG", away: "CAN", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 17 },
-  { home: "AUS", away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 18 },
+  // Day 1 – Feb 7
+  { home: "NED", away: "PAK", homeScore: "147 (20)", awayScore: "148/7 (19.3)", result: "Pakistan won by 3 wickets", winner: "PAK", status: "completed", group: "A", venue: "Colombo (SSC)", dayOffset: 0 },
+  { home: "WI",  away: "SCO", homeScore: "182/5 (20)", awayScore: "147 (18.5)", result: "West Indies won by 35 runs", winner: "WI", status: "completed", group: "C", venue: "Eden Gardens", dayOffset: 0 },
+  { home: "IND", away: "USA", homeScore: "161/9 (20)", awayScore: "132/8 (20)", result: "India won by 29 runs", winner: "IND", status: "completed", group: "A", venue: "Wankhede", dayOffset: 0 },
+
+  // Day 2 – Feb 8
+  { home: "AFG", away: "NZ",  homeScore: "182/6 (20)", awayScore: "183/5 (17.5)", result: "New Zealand won by 5 wickets", winner: "NZ", status: "completed", group: "D", venue: "Chennai", dayOffset: 1 },
+  { home: "ENG", away: "NEP", homeScore: "184/7 (20)", awayScore: "180/6 (20)", result: "England won by 4 runs", winner: "ENG", status: "completed", group: "C", venue: "Wankhede", dayOffset: 1 },
+  { home: "SL",  away: "IRE", homeScore: "163/6 (20)", awayScore: "143 (19.5)", result: "Sri Lanka won by 20 runs", winner: "SL", status: "completed", group: "B", venue: "Colombo (RPS)", dayOffset: 1 },
+
+  // Day 3 – Feb 9
+  { home: "SCO", away: "ITA", homeScore: "207/4 (20)", awayScore: "134 (16.4)", result: "Scotland won by 73 runs", winner: "SCO", status: "completed", group: "C", venue: "Eden Gardens", dayOffset: 2 },
+  { home: "OMA", away: "ZIM", homeScore: "103 (20)", awayScore: "106/2 (13.3)", result: "Zimbabwe won by 8 wickets", winner: "ZIM", status: "completed", group: "B", venue: "Colombo (SSC)", dayOffset: 2 },
+  { home: "SA",  away: "CAN", homeScore: "213/4 (20)", awayScore: "156/8 (20)", result: "South Africa won by 57 runs", winner: "SA", status: "completed", group: "D", venue: "Ahmedabad", dayOffset: 2 },
+
+  // Day 4 – Feb 10
+  { home: "NAM", away: "NED", homeScore: "156/8 (20)", awayScore: "159/3 (18)", result: "Netherlands won by 7 wickets", winner: "NED", status: "completed", group: "A", venue: "Delhi", dayOffset: 3 },
+  { home: "UAE", away: "NZ",  homeScore: "173/6 (20)", awayScore: "175/0 (15.2)", result: "New Zealand won by 10 wickets", winner: "NZ", status: "completed", group: "D", venue: "Chennai", dayOffset: 3 },
+  { home: "PAK", away: "USA", homeScore: "190/9 (20)", awayScore: "158/8 (20)", result: "Pakistan won by 32 runs", winner: "PAK", status: "completed", group: "A", venue: "Colombo (SSC)", dayOffset: 3 },
+
+  // Day 5 – Feb 11 (today)
+  { home: "AFG", away: "SA",  homeScore: null, awayScore: "187/6 (20)", result: null, winner: null, status: "live", group: "D", venue: "Ahmedabad", dayOffset: 4 },
+  { home: "AUS", away: "IRE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Colombo (RPS)", dayOffset: 4 },
+  { home: "ENG", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Wankhede", dayOffset: 4 },
+
+  // ── Upcoming fixtures ──────────────────────────────────
+  { home: "SL",  away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Pallekele", dayOffset: 5 },
+  { home: "ITA", away: "NEP", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Wankhede", dayOffset: 5 },
+  { home: "IND", away: "NAM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Delhi", dayOffset: 5 },
+  { home: "AUS", away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Colombo (RPS)", dayOffset: 6 },
+  { home: "CAN", away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 6 },
+  { home: "NED", away: "USA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Chennai", dayOffset: 6 },
+  { home: "IRE", away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Colombo (SSC)", dayOffset: 7 },
+  { home: "ENG", away: "SCO", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Eden Gardens", dayOffset: 7 },
+  { home: "NZ",  away: "SA",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Ahmedabad", dayOffset: 7 },
+  { home: "NEP", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Wankhede", dayOffset: 8 },
+  { home: "NAM", away: "USA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Chennai", dayOffset: 8 },
+  { home: "IND", away: "PAK", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Colombo (RPS)", dayOffset: 8 },
+  { home: "AFG", away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 9 },
+  { home: "ENG", away: "ITA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Eden Gardens", dayOffset: 9 },
+  { home: "AUS", away: "SL",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Pallekele", dayOffset: 9 },
+  { home: "CAN", away: "NZ",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Chennai", dayOffset: 10 },
+  { home: "IRE", away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Pallekele", dayOffset: 10 },
+  { home: "NEP", away: "SCO", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Wankhede", dayOffset: 10 },
+  { home: "SA",  away: "UAE", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Delhi", dayOffset: 11 },
+  { home: "NAM", away: "PAK", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Colombo (SSC)", dayOffset: 11 },
+  { home: "IND", away: "NED", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Ahmedabad", dayOffset: 11 },
+  { home: "ITA", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Eden Gardens", dayOffset: 12 },
+  { home: "SL",  away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Colombo (RPS)", dayOffset: 12 },
+  { home: "AFG", away: "CAN", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "D", venue: "Chennai", dayOffset: 12 },
+  { home: "AUS", away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Pallekele", dayOffset: 13 },
 ];
 
 // ── Build the data ─────────────────────────────────────────

@@ -59,31 +59,31 @@ interface SeedStanding {
 }
 
 const STANDINGS: SeedStanding[] = [
-  // Group A – confirmed ESPN Feb 11
+  // Group A – ESPN Feb 11 (end of day)
   { short: "PAK", played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  0.932 },
   { short: "IND", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.450 },
   { short: "NED", played: 2, won: 1, lost: 1, tied: 0, nr: 0, pts: 2, nrr:  0.356 },
   { short: "NAM", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.033 },
   { short: "USA", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -1.525 },
 
-  // Group B – AUS haven't played yet; IRE only 1 match
+  // Group B – AUS beat IRE by 67 runs
+  { short: "AUS", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  3.350 },
   { short: "ZIM", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.702 },
   { short: "SL",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.000 },
-  { short: "AUS", played: 0, won: 0, lost: 0, tied: 0, nr: 0, pts: 0, nrr:  0.000 },
-  { short: "IRE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.000 },
+  { short: "IRE", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -2.175 },
   { short: "OMA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.702 },
 
-  // Group C
-  { short: "WI",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.750 },
+  // Group C – WI beat ENG by 30 runs
+  { short: "WI",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.625 },
   { short: "SCO", played: 2, won: 1, lost: 1, tied: 0, nr: 0, pts: 2, nrr:  0.950 },
-  { short: "ENG", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  0.200 },
+  { short: "ENG", played: 2, won: 1, lost: 1, tied: 0, nr: 0, pts: 2, nrr: -0.650 },
   { short: "NEP", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -0.200 },
   { short: "ITA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -3.650 },
 
-  // Group D – AFG vs SA is LIVE; pre-match standings
+  // Group D – SA beat AFG via Super Over
   { short: "NZ",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.919 },
-  { short: "SA",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.850 },
-  { short: "AFG", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.162 },
+  { short: "SA",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.425 },
+  { short: "AFG", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -0.555 },
   { short: "UAE", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.763 },
   { short: "CAN", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.850 },
 ];
@@ -127,9 +127,9 @@ const MATCHES: SeedMatch[] = [
   { home: "PAK", away: "USA", homeScore: "190/9 (20)", awayScore: "158/8 (20)", result: "Pakistan won by 32 runs", winner: "PAK", status: "completed", group: "A", venue: "Ahmedabad", dayOffset: 3 },
 
   // ── Day 5 – Feb 11 ─────────────────────────────────────
-  { home: "AFG", away: "SA",  homeScore: "169/8 (20)", awayScore: "170/4 (18.3)", result: "South Africa won by 6 wickets", winner: "SA", status: "completed", group: "D", venue: "Delhi", dayOffset: 4 },
-  { home: "AUS", away: "IRE", homeScore: "182/4 (20)", awayScore: "115/10 (17)", result: "Australia won by 67 runs", winner: "AUS", status: "completed", group: "B", venue: "Galle", dayOffset: 4 },
-  { home: "ENG", away: "WI",  homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Colombo", dayOffset: 4 },
+  { home: "AFG", away: "SA",  homeScore: "187 (19.4)", awayScore: "187/6 (20)", result: "Match tied (South Africa won the 2nd Super Over)", winner: "SA", status: "completed", group: "D", venue: "Ahmedabad", dayOffset: 4 },
+  { home: "AUS", away: "IRE", homeScore: "182/6 (20)", awayScore: "115 (16.5)", result: "Australia won by 67 runs", winner: "AUS", status: "completed", group: "B", venue: "Colombo (RPS)", dayOffset: 4 },
+  { home: "ENG", away: "WI",  homeScore: "166 (19)", awayScore: "196/6 (20)", result: "West Indies won by 30 runs", winner: "WI", status: "completed", group: "C", venue: "Wankhede", dayOffset: 4 },
 
   // ── Upcoming fixtures ──────────────────────────────────
   { home: "SL",  away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Galle", dayOffset: 5 },

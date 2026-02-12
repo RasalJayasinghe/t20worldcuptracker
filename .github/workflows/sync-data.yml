@@ -1,0 +1,92 @@
+name: Sync ESPN Data
+
+on:
+  # ── Scheduled: every 2 hours during the T20 World Cup ──
+  # Matches typically run 05:30-18:00 UTC (India/Sri Lanka time)
+  # Runs every 2 hours to catch results promptly
+  schedule:
+    - cron: "0 */2 * * *"
+
+  # ── Manual trigger from GitHub Actions UI ──
+  workflow_dispatch:
+    inputs:
+      force_generate:
+        description: "Force regenerate from hardcoded data even if scrape fails"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate base data (ensures matches.json exists)
+        run: npx tsx scripts/generate-static-data.ts
+
+      - name: Sync from ESPN
+        id: sync
+        run: |
+          set +e
+          OUTPUT=$(npx tsx scripts/sync-from-espn.ts 2>&1)
+          EXIT_CODE=$?
+          echo "$OUTPUT"
+
+          if echo "$OUTPUT" | grep -q "DATA_CHANGED=true"; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "⚠️ ESPN sync exited with code $EXIT_CODE"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push updated data
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add public/data/
+
+          if git diff --cached --quiet; then
+            echo "No file changes to commit"
+            exit 0
+          fi
+
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "Auto-sync ESPN data ($TIMESTAMP)"
+          git push
+          echo "✅ Data synced and pushed – Netlify will auto-deploy."
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.sync.outputs.changed }}" == "true" ]; then
+            echo "### ✅ Data Updated" >> $GITHUB_STEP_SUMMARY
+            echo "New standings were scraped from ESPN and committed." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ℹ️ No Changes" >> $GITHUB_STEP_SUMMARY
+            echo "Standings are already up to date (or ESPN was unavailable)." >> $GITHUB_STEP_SUMMARY
+          fi

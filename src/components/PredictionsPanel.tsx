@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { PredictionRow } from "@/lib/types";
 
 interface PredictionsPanelProps {
@@ -97,12 +97,29 @@ export default function PredictionsPanel({
     );
   }
 
+  const [showAll, setShowAll] = useState(false);
   const cfg = STAGE_CONFIG[stage];
-  const sorted = [...predictions].sort(
-    (a, b) => (b[cfg.key] as number) - (a[cfg.key] as number),
+  const sorted = useMemo(
+    () =>
+      [...predictions].sort(
+        (a, b) => (b[cfg.key] as number) - (a[cfg.key] as number),
+      ),
+    [predictions, cfg.key],
   );
   const maxProb = Math.max(...sorted.map((p) => p[cfg.key] as number), 1);
   const qualifyCount = cfg.qualifyCount;
+
+  // On mobile, show only qualifying teams + 2 below cutoff initially
+  const mobileLimit = qualifyCount + 2;
+  const visible = showAll ? sorted : sorted.filter((p, idx) => {
+    const prob = p[cfg.key] as number;
+    if (idx < mobileLimit) return true;
+    // Always hide zero-prob teams below limit
+    if (prob === 0) return false;
+    // On desktop show all, on mobile truncate
+    if (typeof window !== "undefined" && window.innerWidth >= 640) return true;
+    return false;
+  });
 
   return (
     <section>
@@ -118,7 +135,7 @@ export default function PredictionsPanel({
         {(Object.keys(STAGE_CONFIG) as Stage[]).map((s) => (
           <button
             key={s}
-            onClick={() => setStage(s)}
+            onClick={() => { setStage(s); setShowAll(false); }}
             className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-[11px] font-semibold transition-all sm:px-4 sm:py-2 sm:text-xs ${
               stage === s
                 ? "bg-cricket-gold/90 text-slate-900 shadow-lg shadow-cricket-gold/10"
@@ -144,7 +161,7 @@ export default function PredictionsPanel({
         </div>
 
         <div>
-          {sorted.map((p, idx) => {
+          {visible.map((p, idx) => {
             const prob = p[cfg.key] as number;
             if (prob === 0 && idx > 10) return null;
 
@@ -224,6 +241,14 @@ export default function PredictionsPanel({
               </div>
             );
           })}
+          {!showAll && visible.length < sorted.length && (
+            <button
+              onClick={() => setShowAll(true)}
+              className="w-full border-t border-white/[0.04] py-2.5 text-xs font-medium text-slate-400 transition-colors hover:bg-white/[0.02] hover:text-white"
+            >
+              Show all {sorted.length} teams
+            </button>
+          )}
         </div>
       </div>
     </section>

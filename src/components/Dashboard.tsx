@@ -91,8 +91,8 @@ export default function Dashboard({
 
   return (
     <div className="relative flex min-h-screen flex-col bg-[#07090f]">
-      {/* Ambient background glows */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+      {/* Ambient background glows – hidden on mobile for performance */}
+      <div className="pointer-events-none fixed inset-0 hidden overflow-hidden sm:block">
         <div className="absolute left-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-blue-500/[0.02] blur-[120px]" />
         <div className="absolute right-1/4 top-2/3 h-[400px] w-[400px] rounded-full bg-cricket-gold/[0.015] blur-[100px]" />
       </div>

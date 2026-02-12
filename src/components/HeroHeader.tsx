@@ -13,13 +13,13 @@ export default function HeroHeader({
 }: HeroHeaderProps) {
   return (
     <header className="noise-overlay relative overflow-hidden border-b border-white/[0.06] bg-[#07090f]">
-      {/* Ambient glow effects */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-cricket-gold/[0.06] blur-[100px]" />
-      <div className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-blue-500/[0.04] blur-[80px]" />
+      {/* Ambient glow effects – desktop only for performance */}
+      <div className="pointer-events-none absolute -right-32 -top-32 hidden h-96 w-96 rounded-full bg-cricket-gold/[0.06] blur-[100px] sm:block" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 hidden h-64 w-64 rounded-full bg-blue-500/[0.04] blur-[80px] sm:block" />
 
-      {/* Decorative arcs */}
-      <div className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full border border-white/[0.04]" />
-      <div className="pointer-events-none absolute -left-8 -bottom-8 h-48 w-48 rounded-full border border-cricket-gold/[0.06]" />
+      {/* Decorative arcs – desktop only */}
+      <div className="pointer-events-none absolute -right-16 -top-16 hidden h-72 w-72 rounded-full border border-white/[0.04] sm:block" />
+      <div className="pointer-events-none absolute -left-8 -bottom-8 hidden h-48 w-48 rounded-full border border-cricket-gold/[0.06] sm:block" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">

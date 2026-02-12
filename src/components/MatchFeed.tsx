@@ -1,6 +1,19 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import type { MatchInfo } from "@/lib/types";
+
+/** Show fewer cards on mobile to speed up initial paint */
+const MOBILE_CARD_LIMIT = 5;
+const DESKTOP_CARD_LIMIT = 10;
+
+function useIsMobile() {
+  // Safe SSR check – default to mobile limit, expand on client
+  const [isMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 640 : true,
+  );
+  return isMobile;
+}
 
 interface MatchFeedProps {
   recent: MatchInfo[];
@@ -106,6 +119,21 @@ function MatchCard({ match }: { match: MatchInfo }) {
 }
 
 export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
+  const isMobile = useIsMobile();
+  const limit = isMobile ? MOBILE_CARD_LIMIT : DESKTOP_CARD_LIMIT;
+
+  const [showAllRecent, setShowAllRecent] = useState(false);
+  const [showAllUpcoming, setShowAllUpcoming] = useState(false);
+
+  const visibleRecent = useMemo(
+    () => (showAllRecent ? recent : recent.slice(0, limit)),
+    [recent, limit, showAllRecent],
+  );
+  const visibleUpcoming = useMemo(
+    () => (showAllUpcoming ? upcoming : upcoming.slice(0, limit)),
+    [upcoming, limit, showAllUpcoming],
+  );
+
   const noData = recent.length === 0 && upcoming.length === 0;
 
   if (noData) {
@@ -126,9 +154,17 @@ export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
           <div>
             <h3 className="label-text mb-2 sm:mb-3">Recent Results</h3>
             <div className="space-y-2 sm:space-y-3">
-              {recent.map((m) => (
+              {visibleRecent.map((m) => (
                 <MatchCard key={m.id} match={m} />
               ))}
+              {!showAllRecent && recent.length > limit && (
+                <button
+                  onClick={() => setShowAllRecent(true)}
+                  className="w-full rounded-xl border border-white/[0.06] bg-white/[0.02] py-2.5 text-xs font-medium text-slate-400 transition-colors hover:bg-white/[0.04] hover:text-white"
+                >
+                  Show all {recent.length} results
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -138,9 +174,17 @@ export default function MatchFeed({ recent, upcoming }: MatchFeedProps) {
           <div>
             <h3 className="label-text mb-2 sm:mb-3">Upcoming Fixtures</h3>
             <div className="space-y-2 sm:space-y-3">
-              {upcoming.map((m) => (
+              {visibleUpcoming.map((m) => (
                 <MatchCard key={m.id} match={m} />
               ))}
+              {!showAllUpcoming && upcoming.length > limit && (
+                <button
+                  onClick={() => setShowAllUpcoming(true)}
+                  className="w-full rounded-xl border border-white/[0.06] bg-white/[0.02] py-2.5 text-xs font-medium text-slate-400 transition-colors hover:bg-white/[0.04] hover:text-white"
+                >
+                  Show all {upcoming.length} fixtures
+                </button>
+              )}
             </div>
           </div>
         )}

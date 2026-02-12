@@ -74,12 +74,12 @@ const STANDINGS: SeedStanding[] = [
   { short: "NAM", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -1.033 },
   { short: "USA", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -1.525 },
 
-  // Group B – AUS beat IRE by 67 runs today
+  // Group B – SL beat OMA by 105 runs (Feb 12)
+  { short: "SL",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  3.125 },
   { short: "AUS", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  3.350 },
   { short: "ZIM", played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  2.702 },
-  { short: "SL",  played: 1, won: 1, lost: 0, tied: 0, nr: 0, pts: 2, nrr:  1.000 },
   { short: "IRE", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -2.175 },
-  { short: "OMA", played: 1, won: 0, lost: 1, tied: 0, nr: 0, pts: 0, nrr: -2.702 },
+  { short: "OMA", played: 2, won: 0, lost: 2, tied: 0, nr: 0, pts: 0, nrr: -4.306 },
 
   // Group C – WI beat ENG by 30 runs today
   { short: "WI",  played: 2, won: 2, lost: 0, tied: 0, nr: 0, pts: 4, nrr:  1.625 },
@@ -139,8 +139,10 @@ const MATCHES: SeedMatch[] = [
   { home: "AUS", away: "IRE", homeScore: "182/6 (20)", awayScore: "115 (16.5)", result: "Australia won by 67 runs", winner: "AUS", status: "completed", group: "B", venue: "Colombo (RPS)", dayOffset: 4 },
   { home: "ENG", away: "WI",  homeScore: "166 (19)", awayScore: "196/6 (20)", result: "West Indies won by 30 runs", winner: "WI", status: "completed", group: "C", venue: "Wankhede", dayOffset: 4 },
 
+  // Day 6 – Feb 12
+  { home: "SL",  away: "OMA", homeScore: "225/5 (20)", awayScore: "120/9 (20)", result: "Sri Lanka won by 105 runs", winner: "SL", status: "completed", group: "B", venue: "Pallekele", dayOffset: 5 },
+
   // ── Upcoming fixtures ──────────────────────────────────
-  { home: "SL",  away: "OMA", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Pallekele", dayOffset: 5 },
   { home: "ITA", away: "NEP", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "C", venue: "Wankhede", dayOffset: 5 },
   { home: "IND", away: "NAM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "A", venue: "Delhi", dayOffset: 5 },
   { home: "AUS", away: "ZIM", homeScore: null, awayScore: null, result: null, winner: null, status: "upcoming", group: "B", venue: "Colombo (RPS)", dayOffset: 6 },

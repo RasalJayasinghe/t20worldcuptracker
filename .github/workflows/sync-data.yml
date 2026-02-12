@@ -1,11 +1,10 @@
 name: Sync ESPN Data
 
 on:
-  # ── Scheduled: every 2 hours during the T20 World Cup ──
+  # ── Scheduled: every 30 minutes during the T20 World Cup ──
   # Matches typically run 05:30-18:00 UTC (India/Sri Lanka time)
-  # Runs every 2 hours to catch results promptly
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "*/30 * * * *"
 
   # ── Manual trigger from GitHub Actions UI ──
   workflow_dispatch:
